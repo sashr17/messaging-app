@@ -1,6 +1,7 @@
 import { useState } from "react";
-import "./Home.scss";
 import { Link } from "react-router-dom";
+
+import "./Home.scss";
 
 const Home = ({ socket }) => {
   const [userName, setUserName] = useState("");
@@ -11,7 +12,7 @@ const Home = ({ socket }) => {
       socket.emit("joinRoom", { userName, roomName });
       //if empty error message pops up and returns to the same page
     } else {
-      alert("username and roomname are must !");
+      alert("userName and roomName are must !");
       window.location.reload();
     }
   };

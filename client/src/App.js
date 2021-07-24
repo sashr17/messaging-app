@@ -12,8 +12,8 @@ function Appmain(props) {
     <>
       <div className="right">
         <Chat
-          username={props.match.params.username}
-          roomname={props.match.params.roomname}
+          userName={props.match.params.userName}
+          roomName={props.match.params.roomName}
           socket={socket}
         />
       </div>
@@ -32,7 +32,7 @@ function App() {
           <Route path="/" exact>
             <Home socket={socket} />
           </Route>
-          <Route path="/chat/:roomname/:username" component={Appmain} />
+          <Route path="/chat/:roomName/:userName" component={Appmain} />
         </Switch>
       </div>
     </Router>

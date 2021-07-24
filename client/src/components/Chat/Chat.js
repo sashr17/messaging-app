@@ -4,7 +4,7 @@ import { process } from "../../state/actionCreators";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 //gets the data from the action object and reducers defined earlier
-function Chat({ username, roomname, socket }) {
+function Chat({ userName, roomName, socket }) {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -17,13 +17,13 @@ function Chat({ username, roomname, socket }) {
   useEffect(() => {
     socket.on("message", (data) => {
       //decypt the message
-      const ans = to_Decrypt(data.text, data.username);
+      const ans = to_Decrypt(data.text, data.userName);
       dispatchProcess(false, ans, data.text);
-      console.log(ans);
+      // console.log(ans);
       let temp = messages;
       temp.push({
         userId: data.userId,
-        username: data.username,
+        userName: data.userName,
         text: ans,
       });
       setMessages([...temp]);
@@ -46,29 +46,29 @@ function Chat({ username, roomname, socket }) {
 
   useEffect(scrollToBottom, [messages]);
 
-  console.log(messages, "mess");
+  // console.log(messages, "mess");
 
   return (
     <div className="chat">
       <div className="user-name">
         <h2>
-          {username} <span style={{ fontSize: "0.7rem" }}>in {roomname}</span>
+          {userName} <span style={{ fontSize: "0.7rem" }}>in {roomName}</span>
         </h2>
       </div>
       <div className="chat-message">
         {messages.map((i) => {
-          if (i.username === username) {
+          if (i.userName === userName) {
             return (
               <div className="message">
                 <p>{i.text}</p>
-                <span>{i.username}</span>
+                <span>{i.userName}</span>
               </div>
             );
           } else {
             return (
               <div className="message mess-right">
                 <p>{i.text} </p>
-                <span>{i.username}</span>
+                <span>{i.userName}</span>
               </div>
             );
           }
