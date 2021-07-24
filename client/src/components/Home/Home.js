@@ -12,7 +12,6 @@ const Home = ({ socket }) => {
       socket.emit("joinRoom", { userName, roomName });
       //if empty error message pops up and returns to the same page
     } else {
-      // alert("userName and roomName are must !");
       console.error("userName and roomName are must !");
       window.location.reload();
     }
